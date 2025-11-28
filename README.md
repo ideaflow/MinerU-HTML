@@ -12,6 +12,32 @@
 - ⚡ **Distributed Processing**: Ray-based parallel processing for large-scale evaluation
 - 🔧 **Multiple Extractors**: Supports various baseline extractors for comparison
 
+## Evaluation Results
+We evaluated MinerU-HTML on the [WebMainBench](https://github.com/ccprocessor/WebMainBench/) benchmark, which contains 7,887 meticulously annotated web pages along with their corresponding Markdown-formatted main content converted using `html2text`. This benchmark measures the extraction accuracy of content extractors by computing ROUGE-N scores between the extracted results and ground-truth content. The primary evaluation results are presented in the table below:
+
+| Extractor                | ROUGE-N.f1 |
+|--------------------------|------------|
+| MinerU-HTML              | 0.8399     |
+| GPT-5*                   | 0.8302     |
+| DeepSeek-V3*             | 0.8252     |
+| MinerU-HTML(no fallback) | 0.8182     |
+| Magic-HTML               | 0.7091     |
+| Readability              | 0.6491     |
+| Trafilatura              | 0.6358     |
+| Resiliparse              | 0.6233     |
+| html2text                | 0.5977     |
+| BoilerPy3                | 0.5413     |
+| GNE                      | 0.5148     |
+| news-please              | 0.5012     |
+| justText                 | 0.4770     |
+| BoilerPy3                | 0.4766     |
+| Goose3                   | 0.4354     |
+| ReaderLM-v2              | 0.2264     |
+
+where * denotes that use GPT-5/Deepseek-V3 to extract the main html in MinerU-HTML framework instead of our finetuned model.
+
+
+
 ## Installation
 
 ### Prerequisites
