@@ -89,12 +89,18 @@ class Dripper:
         self.debug = config.get('debug', False)
         self.use_fall_back = config.get('use_fall_back', True)
         self.state_machine = config.get('state_machine', None)
+        self.early_load = config.get('early_load', False)
 
         # Lazy-loaded attributes (initialized on first use)
         self._llm: Optional[LLM] = None
         self._tokenizer: Optional[AutoTokenizer] = None
         self._trafilatura_settings = None
         self._trafilatura = None
+
+        if self.early_load:
+            self.get_llm()
+            self.get_tokenizer()
+            self.get_trafilatura()
 
     def get_trafilatura(self):
         """
