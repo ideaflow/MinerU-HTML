@@ -73,7 +73,7 @@ class TransformersInferenceBackend(InferenceBackend):
             'temperature': model_gen_kwargs.pop('temperature', 0),
             'max_new_tokens': model_gen_kwargs.pop('max_new_tokens', 8 * 1024),
             'do_sample': model_gen_kwargs.pop('do_sample', False),
-            'pad_token_id': tokenizer.pad_token_id or tokenizer.eos_token_id,
+            'pad_token_id': tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id,
             'eos_token_id': tokenizer.eos_token_id,
             'return_full_text': model_gen_kwargs.pop('return_full_text', False),
             **model_gen_kwargs
